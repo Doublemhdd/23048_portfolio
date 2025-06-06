@@ -8,6 +8,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // Fix the images config format
   images: {
     unoptimized: true
   },

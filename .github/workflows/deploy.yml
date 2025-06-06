@@ -31,15 +31,21 @@ jobs:
         with:
           static_site_generator: next
           
+      - name: Clean up config files
+        run: |
+          echo "=== Removing duplicate config files ==="
+          rm -f next.config.js
+          rm -f pnpm-lock.yaml
+          
       - name: Install dependencies
         run: npm install --legacy-peer-deps
         
       - name: Build with Next.js
         run: |
+          echo "=== Starting build ==="
           npm run build
-          ls -la
-          ls -la out/ || echo "out directory not found"
-        
+          echo "=== Build completed ==="
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
