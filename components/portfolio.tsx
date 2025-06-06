@@ -1,12 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { useTheme } from "next-themes"
 import { useLanguage } from "@/components/language-provider"
+import Image from "next/image"
 import {
   Moon,
   Sun,
@@ -36,6 +36,17 @@ export default function Portfolio() {
   const [mounted, setMounted] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
   const [scrollY, setScrollY] = useState(0)
+
+  const getImagePath = () => {
+    // Check if we're in a browser environment
+    if (typeof window !== "undefined") {
+      // Check if we're on GitHub Pages
+      if (window.location.hostname.includes("github.io")) {
+        return "/23048_portfolio/profile.png"
+      }
+    }
+    return "/profile.png"
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -283,11 +294,37 @@ export default function Portfolio() {
           <div className="relative w-64 h-64 mx-auto mb-12 group">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 rounded-full animate-spin-slow opacity-75 blur-sm"></div>
             <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl group-hover:scale-105 transition-transform duration-500">
+              {/* Next.js Image (primary) */}
               <Image
-                src="/profile.png"
+                src={getImagePath() || "/placeholder.svg"}
                 alt="Mohamed M.Lemine"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
+                sizes="(max-width: 768px) 256px, 256px"
+                priority
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.style.display = "none"
+                  document.getElementById("fallback-img")!.style.display = "block"
+                }}
+              />
+
+              {/* Regular HTML image (fallback) */}
+              <img
+                id="fallback-img"
+                src={getImagePath() || "/placeholder.svg"}
+                alt="Mohamed M.Lemine"
+                style={{
+                  display: "none",
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.src = "https://ui-avatars.com/api/?name=Mohamed+Lemine&size=512&background=3b82f6&color=fff"
+                  target.style.display = "block"
+                }}
               />
             </div>
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 rounded-full opacity-20 animate-pulse"></div>

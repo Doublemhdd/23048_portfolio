@@ -31,20 +31,36 @@ jobs:
         with:
           static_site_generator: next
           
-      - name: Clean up config files
+      - name: Verify public folder
         run: |
-          echo "=== Removing duplicate config files ==="
-          rm -f next.config.js
-          rm -f pnpm-lock.yaml
+          echo "=== Checking public folder ==="
+          ls -la public/
+          echo "=== Checking if profile.png exists ==="
+          if [ -f "public/profile.png" ]; then
+            echo "✅ profile.png exists"
+            file public/profile.png
+          else
+            echo "❌ profile.png not found"
+          fi
           
       - name: Install dependencies
         run: npm install --legacy-peer-deps
         
       - name: Build with Next.js
+        run: npm run build
+        
+      - name: Verify output folder
         run: |
-          echo "=== Starting build ==="
-          npm run build
-          echo "=== Build completed ==="
+          echo "=== Checking output folder ==="
+          ls -la out/
+          echo "=== Checking if profile.png was copied to output ==="
+          if [ -f "out/profile.png" ]; then
+            echo "✅ profile.png exists in output"
+          else
+            echo "❌ profile.png not found in output"
+            echo "=== Checking all image files in output ==="
+            find out/ -type f -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif"
+          fi
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
