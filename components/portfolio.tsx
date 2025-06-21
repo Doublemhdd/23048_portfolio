@@ -160,7 +160,7 @@ export default function Portfolio() {
       descriptionEn:
         "Development of a real-time data visualization and exploration system with alert model for food security. Advanced monitoring interface with interactive dashboards.",
       tech: ["Data Viz", "Real-time", "Python", "Dashboard", "Alerts", "Security"],
-      github: "https://github.com/Doublemhdd/csa-visualization-system",
+      github: "https://github.com/Doublemhdd/AGSAVN_CSA",
       icon: <Sparkles className="w-8 h-8" />,
       color: "from-yellow-400 to-orange-500",
       gradient: "bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20",
@@ -174,7 +174,7 @@ export default function Portfolio() {
       descriptionEn:
         "Development of a blockchain simulator to understand and analyze cryptocurrency mechanisms. Implementation of consensus algorithms, mining and decentralized transactions.",
       tech: ["Blockchain", "Cryptocurrency", "Python", "Consensus", "Mining", "DeFi"],
-      github: "https://github.com/Doublemhdd/crypto-blockchain-simulator",
+      github: "https://github.com/Doublemhdd/Crypto_Ahd",
       icon: <Server className="w-8 h-8" />,
       color: "from-purple-400 to-pink-500",
       gradient: "bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20",
@@ -188,7 +188,7 @@ export default function Portfolio() {
       descriptionEn:
         "Development of a National Consumer Price Index calculation system for ANSAD. Automation of statistical calculations and generation of detailed economic reports.",
       tech: ["Statistics", "Economics", "Python", "Data Analysis", "Reports", "ANSAD"],
-      github: "https://github.com/Doublemhdd/inpc-calculator-ansad",
+      github: "https://github.com/Doublemhdd/Ansad-project",
       icon: <Database className="w-8 h-8" />,
       color: "from-green-400 to-blue-500",
       gradient: "bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20",
